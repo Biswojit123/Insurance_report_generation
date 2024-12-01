@@ -3,6 +3,7 @@ package com.biswo.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.biswo.entity.CityzenPlanInfo;
@@ -16,20 +17,39 @@ public class ServiceReportImp implements ServiceReport {
 
 	@Override
 	public List<String> getPlanName() {
-		// TODO Auto-generated method stub
-		return null;
+		return repo.getPlanName();
 	}
 
 	@Override
 	public List<String> getPlanStatus() {
-		// TODO Auto-generated method stub
-		return null;
+		return repo.getPlanStatus();
 	}
 
 	@Override
 	public List<CityzenPlanInfo> search(SearchData search) {
-		// TODO Auto-generated method stub
-		return null;
+		//Create the CityzenPlanInfo object to pass example object
+		CityzenPlanInfo info = new CityzenPlanInfo();
+		//set the Search data to the info object according to the search criteria
+		if(null != search.getPlanName() && !"".equals(search.getPlanName())) {
+			info.setPlanName(search.getPlanName());
+		}
+		
+		if(null != search.getPlanStatus() && !"".equals(search.getPlanStatus())) {
+			info.setPlanStatus(search.getPlanStatus());
+		}
+		
+		if(null != search.getGender() && !"".equals(search.getGender())) {
+			info.setGender(search.getGender());
+		}
+		
+		if(null != search.getPlan_start_date()) {
+			info.setPlanStartDate(search.getPlan_start_date());
+		}
+		
+		if(null != search.getPlan_end_date()) {
+			info.setPlanEndDate(search.getPlan_end_date());
+		}
+		return repo.findAll(Example.of(info));
 	}
 
 	@Override

@@ -13,6 +13,6 @@ public interface InsuranceRepository extends JpaRepository<CityzenPlanInfo, Inte
 	//We have to create the two custom method to achieve our requirement 
 	@Query("Select Distinct(planName) from CityzenPlanInfo")
 	public List<String> getPlanName();
-	@Query("Select Distinct(planName) from CityzenPlanInfo")
+	@Query("Select Distinct(planStatus) from CityzenPlanInfo")
 	public List<String> getPlanStatus();
 }
