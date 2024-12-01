@@ -119,7 +119,7 @@ public class InsuranceRunner implements ApplicationRunner {
 		// Employment plan
 		citizen9.setCityzenName("Dipti");
 		citizen9.setGender("Female");
-		citizen9.setPlanName("Employement");
+		citizen9.setPlanName("Employment");
 		citizen9.setPlanStatus("Approve");
 		citizen9.setPlanStartDate(LocalDate.now().minusDays(10));
 		citizen9.setPlanEndDate(LocalDate.now().plusMonths(5));
