@@ -69,5 +69,4 @@ Ensure you have the following installed on your system:
 # Database Schema
 ![Screenshot 2024-12-05 175904](https://github.com/user-attachments/assets/37ac666e-acf1-4e02-b125-658ee5013f06)
 # Project Structure
-
- 	
+![Screenshot 2024-12-05 175904](https://github.com/user-attachments/assets/ac22a368-c971-48ed-91dd-5d46dab74f7a)
