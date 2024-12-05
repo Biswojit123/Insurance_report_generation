@@ -99,10 +99,10 @@
 			<hr />
 			Export:
 			<button class="btn btn-info">
-				<a href="">Excel</a>
+				<a href="excel">Excel</a>
 			</button>
 			<button class="btn btn-info">
-				<a href="">Pdf</a>
+				<a href="pdf">Pdf</a>
 			</button>
 		</div>
 	</div>

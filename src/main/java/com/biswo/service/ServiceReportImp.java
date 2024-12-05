@@ -1,5 +1,6 @@
 package com.biswo.service;
 
+import java.io.File;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,13 +8,27 @@ import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.biswo.entity.CityzenPlanInfo;
+import com.biswo.generate.EmailUtils;
+import com.biswo.generate.ExportToExcel;
+import com.biswo.generate.ExportToPdf;
 import com.biswo.repo.InsuranceRepository;
 import com.biswo.request.SearchData;
+
+import jakarta.servlet.http.HttpServletResponse;
 
 @Service
 public class ServiceReportImp implements ServiceReport {
 	@Autowired
 	private InsuranceRepository repo;
+	
+	@Autowired
+	private ExportToPdf generatePdf;
+	
+	@Autowired
+	private ExportToExcel generateExcel;
+	
+	@Autowired
+	private EmailUtils emailSender;
 
 	@Override
 	public List<String> getPlanName() {
@@ -53,15 +68,40 @@ public class ServiceReportImp implements ServiceReport {
 	}
 
 	@Override
-	public boolean exportToExcel() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean exportToExcel(HttpServletResponse response)throws Exception {
+		
+		//Create a File
+		File f = new File("User.xls");
+		List<CityzenPlanInfo> plans = repo.findAll();
+		generateExcel.generateExcel(response, plans,f);
+		
+		//Here we send the excel file to mail
+		//set the subject
+		String subject = "Insurance Report";
+		//set the email body
+		String body = "<h1>Users Insurance Report File<h1>";
+		//set the user mail id 
+		String to = "jenabiswojit01@gmail.com";
+		//call the method of JavaMailSender
+		emailSender.sendEmail(subject, body, to,f);
+		f.delete();
+		return true;
 	}
 
 	@Override
-	public boolean exportToPdf() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean exportToPdf(HttpServletResponse response)throws Exception {
+		File f = new File("User.pdf");
+		List<CityzenPlanInfo> plans = repo.findAll();
+		generatePdf.generatePdf(response, plans,f);
+		String subject = "Insurance Report";
+		//set the email body
+		String body = "<h1>Users Insurance Report File<h1>";
+		//set the user mail id 
+		String to = "jenabiswojit01@gmail.com";
+		//call the method of JavaMailSender
+		emailSender.sendEmail(subject, body, to,f);
+		f.delete();
+		return true;
 	}
 
 }
