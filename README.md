@@ -67,6 +67,7 @@ Ensure you have the following installed on your system:
     - Follow the UI instructions to generate an insurance report and send it via email in Excel or PDF format.
 
 # Database Schema
+![Screenshot 2024-12-05 175904](https://github.com/user-attachments/assets/37ac666e-acf1-4e02-b125-658ee5013f06)
 # Project Structure
 
  	
